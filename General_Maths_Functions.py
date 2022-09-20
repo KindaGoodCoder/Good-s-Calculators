@@ -15,7 +15,7 @@ def intcheck(number):
         return float(number).is_integer()
 
 def intinator(number):
-    if type(number) == 'float' or 'int':
+    if numbercheck(number):
         if number.is_integer():
             return int(number)
         else:
