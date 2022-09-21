@@ -1,15 +1,15 @@
-from General_Maths_Functions import intinator
+from General_Maths_Functions import intinator #Import from another file
 
-print("Example input: 26,27,29")
+print("Example input: 26,27,29") #Example input
 
-while True:
-    data = input("Enter data set, seperate by commas ").strip()
+while True: #FOREVER!
+    data = input("Enter data set, seperate by commas ").strip() #Input
     try:
-        data = sorted(tuple(map(intinator,map(float,data.split(',')))))
+        data = sorted(tuple(map(intinator,map(float,data.split(','))))) #What is happening?
     except:
         print("Invalid sequence, please enter a readable number sequence.For example: 1,2,7,3,0\n")
-        continue
-    data_length = len(data)
+        continue #If invalid input, display message and restart loop
+    data_length = len(data) 
     data_sum = sum(data)
 
     print("Number of data provided: ", data_length)
