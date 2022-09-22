@@ -1,33 +1,38 @@
-from General_Maths_Functions import intinator
+from General_Maths_Functions import intinator #Import from another file
 
-print("Example input: 26,27,29")
+print("Example input: 26,27,29") #Example input
 
-while True:
-    data = input("Enter data set, seperate by commas ").strip()
+while True: #FOREVER!
+    data = input("Enter data set, seperate by commas\n> ").strip() #Input
     try:
-        data = sorted(tuple(map(intinator,map(float,data.split(',')))))
+        data = sorted(tuple(map(intinator,map(float,data.split(','))))) #What is happening?
     except:
         print("Invalid sequence, please enter a readable number sequence.For example: 1,2,7,3,0\n")
-        continue
-    data_length = len(data)
+        continue #If invalid input, display message and restart loop
+    data_length = len(data) 
     data_sum = sum(data)
 
     print("Number of data provided: ", data_length)
     print("Sum of all data provided: ", data_sum)
 
-    print("The Mean is: ",intinator(round(data_sum/data_length,2)))
+    print(f"The Mean is: {intinator(round((data_sum/data_length),2))}")
 
-    kdata = round(max(data)-min(data),2) #kdata = range
-    if kdata == 0:
-        kdata = 1
-    print("The Range is: ",kdata)
+    kdata = max(data)-min(data) #kdata = range
+    kdata = 1 if kdata == 0 else kdata        
+    print(f"The Range is: {kdata}")
 
     amode = int(data_length/2) #amode = median
+    print("The Median is: ", intinator((data[amode]+data[amode-1])/2) if data_length % 2 == 0 else data[amode])
+
+    #IQR    
+    index = int((amode-1)/2)
+    kdata = amode+index
+    #Calculate based off if len/2 is even or odd. The madness
     if data_length % 2 == 0:
-        kdata = intinator((data[amode]+data[amode-1])/2)
+        kdata = data[kdata]-data[index] if data_length % 4 != 0 else ((data[kdata]+data[kdata+1])-(data[index]+data[index+1]))/2
     else:
-        kdata = data[amode]
-    print("The Median is: ", kdata)
+        kdata = data[index+1]
+    print("IQR is: ",kdata)
 
     amode = {} #amode = mode
     for x in data:
@@ -41,7 +46,7 @@ while True:
 f"""Frequency Table:
 x   |   f""")
     kdata = tuple(amode.keys())
-    values = tuple(amode.values())
-    for x in range(0,len(amode)):
-        print(f"{kdata[x]}   |   {values[x]}")
+    amode = tuple(amode.values())
+    for x,y in zip(kdata,amode):
+        print(f"{x}   |   {y}")
     print()
