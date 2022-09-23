@@ -29,7 +29,7 @@ while True: #FOREVER!
     kdata = amode+index
     #Calculate based off if len/2 is even or odd. The madness
     if data_length % 2 == 0:
-        kdata = data[kdata]-data[index] if data_length % 4 != 0 else ((data[kdata]+data[kdata+1])-(data[index]+data[index+1]))/2
+        kdata = data[kdata]-data[index] if data_length % 4 != 0 else intinator(round(((data[kdata]+data[kdata+1])-(data[index]+data[index+1]))/2,2))
     else:
         if amode % 2 == 0:
             kdata = data[(kdata)]-data[index+1]
