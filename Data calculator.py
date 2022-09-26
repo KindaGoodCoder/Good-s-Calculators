@@ -3,9 +3,9 @@ from General_Maths_Functions import intinator #Import from another file
 print("Example input: 26,27,29") #Example input
 
 while True: #FOREVER!
-    data = input("Enter data set, seperate by commas\n> ").strip() #Input
+    data = input("Enter data set, seperate by commas\n> ") #Input
     try:
-        data = tuple(sorted(intinator(x) for x in data.split(','))) #What is happening?
+        data = tuple(sorted(map(intinator,data.split(',')))) #What is happening?
     except:
         print("Invalid sequence, please enter a readable number sequence.For example: 1,2,7,3,0\n")
         continue #If invalid input, display message and restart loop
