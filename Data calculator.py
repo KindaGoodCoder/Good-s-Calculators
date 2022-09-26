@@ -5,7 +5,7 @@ print("Example input: 26,27,29") #Example input
 while True: #FOREVER!
     data = input("Enter data set, seperate by commas\n> ").strip() #Input
     try:
-        data = tuple(sorted(map(intinator, data.split(',')))) #What is happening?
+        data = tuple(sorted(intinator(x) for x in data.split(','))) #What is happening?
     except:
         print("Invalid sequence, please enter a readable number sequence.For example: 1,2,7,3,0\n")
         continue #If invalid input, display message and restart loop
@@ -28,12 +28,13 @@ while True: #FOREVER!
     index = int((amode-1)/2)
     kdata = amode+index
     #Calculate based off if len/2 is even or odd. The madness
-    if data_length % 2 == 0:
-        kdata = data[kdata]-data[index] if data_length % 4 != 0 else intinator(round(((data[kdata]+data[kdata+1])-(data[index]+data[index+1]))/2,2))
-    else:
-        if amode % 2 == 0:
-            kdata = data[(kdata)]-data[index+1]
-    print("IQR is: ",kdata)
+    if data_length > 1:
+        if data_length % 2 == 0:
+            kdata = data[kdata]-data[index] if data_length % 4 != 0 else intinator(round(((data[kdata]+data[kdata+1])-(data[index]+data[index+1]))/2,2))
+        else:
+            if amode % 2 == 0:
+                kdata = data[(kdata)]-data[index+1]
+        print("IQR is: ",kdata)
 
     amode = {} #amode = mode
     for x in data:
