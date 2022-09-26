@@ -16,10 +16,10 @@ def intcheck(number):
 
 def intinator(number):
     if numbercheck(number):
-        if number.is_integer():
+        if float(number).is_integer():
             return int(number)
         else:
-            return number
+            return float(number)
     else:
         raise ValueError("Requires a 'float' or 'int' object")
 

@@ -5,7 +5,7 @@ print("Example input: 26,27,29") #Example input
 while True: #FOREVER!
     data = input("Enter data set, seperate by commas\n> ").strip() #Input
     try:
-        data = sorted(tuple(map(intinator,map(float,data.split(','))))) #What is happening?
+        data = tuple(sorted(map(intinator, data.split(',')))) #What is happening?
     except:
         print("Invalid sequence, please enter a readable number sequence.For example: 1,2,7,3,0\n")
         continue #If invalid input, display message and restart loop
@@ -46,8 +46,6 @@ while True: #FOREVER!
     print(
 f"""Frequency Table:
 x   |   f""")
-    kdata = tuple(amode.keys())
-    amode = tuple(amode.values())
-    for x,y in zip(kdata,amode):
+    for x,y in zip(amode.keys(),amode.values()):
         print(f"{x}   |   {y}")
     print()
