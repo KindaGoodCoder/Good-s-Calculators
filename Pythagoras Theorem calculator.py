@@ -1,5 +1,5 @@
 from math import sqrt
-from General_Maths_Functions import *
+from General_Maths_Functions import intinator,ezinput
 
 def breakinput(msg):
     msg = input(msg+" side\n> ").strip()
