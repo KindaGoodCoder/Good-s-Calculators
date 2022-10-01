@@ -1,26 +1,27 @@
-from General_Maths_Functions import numbercheck
+from General_Maths_Functions import *
+
+def breakinput(msg):
+    msg = ezinput(msg+"?\n> ")
+    if msg == "exit":
+        print(f"Now exiting {mode} mode\n")
+        raise ValueError
+    elif not numbercheck(msg):
+        print("Invalid input\n")
+        raise
+    return float(msg)
 
 while True:
-    mode = input("Solve value or for variable").lower().strip()
+    mode = ezinput("Solve value or for variable ")
     if mode == 'value':
         while True:
-            exiting = f"Now exiting {mode} mode"
-            p = input("Principal? ").strip()
-            if p == 'exit':
-                print
-            r = input("Rate? ").strip()
-            n = input("Time? ").strip()
-            if (numbercheck(p) and numbercheck(r) and numbercheck(n)):
-                p = float(p)
-                r = float(r)
-                try:
-                    int(n)
-                except:
-                    n = float(n)
-                else:
-                    n = int(n)
-                print(f"The value in {n} (specified amount) will be ${round(p*(1-(r/100))**n,2)}")
-        else:
-            print("One of the inputs were not a valid number")
+            try:
+                p = breakinput("Principal")
+                r = breakinput("Rate")
+                n = intinator(breakinput("Time"))
+                print(f"The value in {n} terms will be ${intinator(round(p*(1-(r/100))**n,2))}\n")
+            except ValueError:
+                break
+            except:
+                continue
     elif mode == 'variable':
         mode = input("What variable to solve? ")

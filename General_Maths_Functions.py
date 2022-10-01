@@ -14,8 +14,9 @@ def intcheck(number):
     else:
         return float(number).is_integer()
 
-def intinator(number):
+def intinator(number,roundby=2):
     if numbercheck(number):
+        number = round(number,roundby)
         if float(number).is_integer():
             return int(number)
         else:

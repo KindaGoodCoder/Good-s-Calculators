@@ -1,14 +1,30 @@
-import math
+from math import sqrt
+from General_Maths_Functions import *
+
+def breakinput(msg):
+    msg = input(msg+" side\n> ").strip()
+    return float(msg)
+
 while True:
-    mode = input("Solve for hypotenuse or side ").lower()
-    if mode == 'hypotenuse':
-        a = float(input("A side "))
-        b = float(input("B side "))
-        print("c =", round(math.sqrt(a**2+b**2),2))
+    mode = ezinput("Solve for hypotenuse or side ")
+    if mode == 'hypotenuse' or mode == "h":
+        try:
+            a = breakinput("A")
+            b = breakinput("B")
+            print(f"C = {intinator(sqrt(a*a+b*b))}")
+        except:
+            print("Invalid Input")
+        print()
     elif mode == 'side':
-        c = float(input("C side "))
-        a = float(input("A side "))
-        if c <= a:
-            print("I think you made a mistake, C(The hypotenuse, or longer side)should be bigger than A")
-        else:
-            print("B =", round(math.sqrt(c**2-a**2),2))
+        try:
+            c = breakinput("C")
+            a = breakinput("A")
+            if c <= a:
+                print("C should be longer than A")
+            else:
+                print(f"B = {intinator(sqrt(c*c-a*a))}")
+        except:
+            print("Invalid Input")
+        print()
+    else:
+        print("Invalid input\n")
