@@ -1,15 +1,17 @@
-from General_Maths_Functions import numcheck
+from General_Maths_Functions import intcheck
+from math import gcd
 
-def checkinput(txt)
-    if not numcheck(txt)
+def checkinput(txt):
+    txt = input(txt+" Number\n> ")
+    if not intcheck(txt):
         raise
-    return float(txt)
+    return int(txt)
 
 while True:
     try:
         one = checkinput("First")
         two = checkinput("Second")
-        divide = math.gcd(one,two)
+        divide = gcd(one,two)
         print(int(one/divide),':',int(two/divide))
-    else:
+    except:
         print("One of the inputs contains a non-number character. All characters must be a number")
