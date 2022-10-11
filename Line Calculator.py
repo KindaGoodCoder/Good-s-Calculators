@@ -5,30 +5,26 @@ def inputinator(inputting):
     data = input(inputting)
     if "second" in inputting:
         try:
-            float(data)
-        except:
+            data = float(data)
+        except ValueError:
             pass
-        else:
-            return float(data)
     try:
         data = tuple(map(float,data.strip().split(',')))
-        data[1]
+        data[1] #Call upon second value. Raises error if none
         if len(data) > 2:
-            raise
+            raise #If more than 2 values, raise error
     except:
         print("Invalid sequence, please enter a readable number sequence. For example: 1,2")
-        return False
     return data
 
 while True:
-    c1 =  inputinator("\nEnter first coordinate. E.g. 3,5 ")
-    if c1 == False:
+    try:
+        c1 =  inputinator("\nEnter first coordinate. E.g. 3,5 ")        
+        c2 =  inputinator("Enter second coordinate or enter gradient (as a lone number) to solve line equation ")
+    except:
         continue
     x1 = c1[0]
-    c2 =  inputinator("Enter second coordinate or enter gradient (as a lone number) to solve line equation ")
-    if c2 == False:
-        continue
-    if not numbercheck(c2):
+    if not numbercheck(c2): #if c2 = tuple
         x2 = c2[0]
         y1 = c1[1]
         y2 = c2[1]
