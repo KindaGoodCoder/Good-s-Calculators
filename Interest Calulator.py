@@ -65,7 +65,7 @@ if __name__ == "__main__":
                                 print(f"> Principal: ${P}") #Calculate for Principal
 
                             case [P,0,N]:
-                                I = intinput("Total Value ")
+                                I = intinput("Total ")
                                 R = intinator(100*((I/P)**(1/N)-1),roundint) #Calculate for Rate
                                 copying(R)
                                 print(f"> Rate: {R}%")
@@ -74,7 +74,7 @@ if __name__ == "__main__":
                                 if P < 0 or R < 0:
                                     print("No negative numbers") #You try performing logarithmics on a negative number
                                     continue
-                                I = intinput("Total Value ")
+                                I = intinput("Total ")
                                 N = intinator(log(I/P,R+1),roundint) #Calculate for Time. Use log() to find x if (R+1)^x = I/P
                                 copying(N)
                                 print(f"> Time: {N}")
