@@ -6,11 +6,9 @@ def numbercheck(number):
     return True
 
 def intcheck(number):
-    try:
-        float(number)
-    except:
-        return False
-    return float(number).is_integer()
+    if numbercheck(number):
+        return float(number).is_integer()
+    return False
 
 def floatcheck(number):
     return True if numbercheck(number) and not intcheck(number) else False        
