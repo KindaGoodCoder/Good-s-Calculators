@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 from General_Maths_Functions import *
 from pyperclip import copy
 from math import log
@@ -7,49 +8,34 @@ simplemode = False
 compoundmode = False
 copymode = True
 
-def inputnum(txt):
-    txt = input(txt)
-    intinator(txt) #Will return ValueError if not a number
-
 while True:
     match ezinput("Simple or compound "):
         case 'simple':
             while True:
                 try:
-                    P=inputnum("\nP ")
-                    R=inputnum("R ")
-                    N=inputnum("N ")
+                    P = intinator(input("\nP "))
+                    R = intinator(input("R "))
+                    N = intinator(input("N ")
                 except ValueError:
                     print("Invalid input, please try again")
                     continue
-                I = P*(R/100)*N
-                if simplemode:
-                    I += P
+                I = intinator(P*(R/100)*N)
                 copy(f'${I}')
-                print(f"I=${I}",'\n')
+                print(f"Interest: ${I}")
+                print(f"Total: ${I+P}",'\n')
         case 'compound':
             while True:
-                P=input("P ").lower().strip()
-                if P == 'exit':
-                    break
-                R=input("R ").lower().strip()
-                if R == 'exit':
-                    break
-                N=input("N ").lower().strip()
-                if N == 'exit':
-                    break
-                if (numbercheck(P)and numbercheck(R) and numbercheck(N)):
-                    P = float(P)
-                    R = float(R)
-                    N = float(N)
-                    I = round(P*(1+(R/100))**N,roundint)
-                    if compoundmode:
-                        I -= P
-                    if I.is_integer():
-                        I = int(I)
-                    if copymode:
-                        copy(f'${I}')
-                    print("I =",I,'\n')
+                try:
+                    P = intinator(input("\nP "))
+                    R = intinator(input("R "))
+                    N = intinator(input("N "))
+                except ValueError:
+                    print("Invalid input, please try again")
+                    continue
+                I = intinator(P*(1+(R/100))**N,roundint)
+                copy(f'${I}')
+                print(f"I: ${I-P}\n")
+                print(f"Total: ${I}\n")
         case 'reverse':
             method = ezinput("Solve for Simple or compound ")
             if method == 'simple':

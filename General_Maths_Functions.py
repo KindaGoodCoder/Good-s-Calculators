@@ -17,10 +17,11 @@ def floatcheck(number):
 
 def intinator(number,roundby=2):
     if numbercheck(number):
+        number = float(number)
         number = round(number,roundby)
-        if float(number).is_integer():
+        if number.is_integer():
             return int(number)
-        return float(number)
+        return number
     raise ValueError("Requires a 'float' or 'int' object")
 
 def ezinput(msg):
