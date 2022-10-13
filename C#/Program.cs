@@ -1,16 +1,20 @@
-﻿using System;
-
-namespace HelloWorld
-{
-    class Program
+﻿class Program
     {
-        static void Main(string[] args)
+    static double inputnum()
+    {
+        Console.WriteLine("Constant");
+        return 5.9;
+    }
+    static void Main()
+    {
+        while (true)
         {
-            Console.WriteLine("Constant");
+            inputnum();
             double constant = Convert.ToDouble((Console.ReadLine()));
             Console.WriteLine("Variable Base");
             double var = Convert.ToDouble((Console.ReadLine()));
-            Console.WriteLine(Math.Log(constant,var));
+            Console.WriteLine("> Variable Power: "+Math.Log(constant,var));
+            Console.WriteLine();
         }
     }
 }
