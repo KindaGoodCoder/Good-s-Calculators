@@ -1,0 +1,15 @@
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\bin\Debug\net6.0\C#.exe
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\bin\Debug\net6.0\C#.deps.json
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\bin\Debug\net6.0\C#.runtimeconfig.json
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\bin\Debug\net6.0\C#.dll
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\bin\Debug\net6.0\C#.pdb
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\C#.csproj.AssemblyReference.cache
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\C#.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\C#.AssemblyInfoInputs.cache
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\C#.AssemblyInfo.cs
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\C#.csproj.CoreCompileInputs.cache
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\C#.dll
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\refint\C#.dll
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\C#.pdb
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\C#.genruntimeconfig.cache
+C:\Users\arafe\Documents\School Stuff\Python Maths\C#\obj\Debug\net6.0\ref\C#.dll

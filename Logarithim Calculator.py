@@ -1,6 +1,6 @@
 #logarithims
 from General_Maths_Functions import numbercheck, intinator
-from math import log
+import math
 
 def inputnum(txt): #Checks if input is valid
     txt = input("Enter "+txt)
@@ -24,4 +24,4 @@ if __name__ == "__main__":
         except ValueError:
             print("Invalid Input, please try again\n")
             continue
-        print(intinator(log(constant,var)),"\n")
+        print(f"> x = {intinator(math.log(constant,var))}\n")
