@@ -1,236 +1,127 @@
-from multiprocessing.sharedctypes import Value
 from General_Maths_Functions import *
-from pyperclip import copy
+# from pyperclip import copy
 from math import log
 
-roundint = 2
-simplemode = False
-compoundmode = False
-copymode = True
+def copy(_):
+    pass
 
-while True:
-    match ezinput("Simple or compound "):
-        case 'simple':
-            while True:
-                try:
-                    P = intinator(input("\nP "))
-                    R = intinator(input("R "))
-                    N = intinator(input("N ")
-                except ValueError:
-                    print("Invalid input, please try again")
-                    continue
-                I = intinator(P*(R/100)*N)
-                copy(f'${I}')
-                print(f"Interest: ${I}")
-                print(f"Total: ${I+P}",'\n')
-        case 'compound':
-            while True:
-                try:
-                    P = intinator(input("\nP "))
-                    R = intinator(input("R "))
-                    N = intinator(input("N "))
-                except ValueError:
-                    print("Invalid input, please try again")
-                    continue
-                I = intinator(P*(1+(R/100))**N,roundint)
-                copy(f'${I}')
-                print(f"I: ${I-P}\n")
-                print(f"Total: ${I}\n")
-        case 'reverse':
-            method = ezinput("Solve for Simple or compound ")
-            if method == 'simple':
+copying = lambda a: copy(a) if copymode else 0 #little mini function
+
+def intinput(txt):
+    txt = ezinput(txt) 
+    if txt == "exit":
+        print("Exiting...\n")
+        raise TypeError 
+    return intinator(txt) #Either errors and raises ValueError or returns... choose one
+
+def simple_reverseop(v1,v2):
+    I = intinput("Interest ")
+    I = I/(v1*v2)
+    copying(I)
+    return intinator(I,roundint)
+
+def inputs():
+    P = intinput("\nPrincipal ")
+    R = intinput("Rate ")/100
+    N = intinput("Time ")
+    return [P,R,N]
+
+if __name__ == "__main__":
+    roundint = 2 #Default settings
+    copymode = True 
+
+    while True:
+        match ezinput("Simple or compound "):
+            case 'simple': #Simple interest calculator
                 while True:
-                    solve_variable = input("Solve for Principal, rate or time period ").lower().strip()
-                    if solve_variable == "principal" or solve_variable == "p":
-                        r = input("Rate ")
-                        if r == 'exit':
-                            print()
-                            break
-                        n = ezinput("Time period ")
-                        if n == 'exit':
-                            print()
-                            break
-                        FV = ezinput(input("Interest "))
-                        if FV == 'exit':
-                            print()
-                            break
-                        if (numbercheck(r) and numbercheck(n) and numbercheck(FV)):
-                            r = float(r)
-                            n = float(n)
-                            FV = float(FV)
-                            p = round(FV/(r/100*n),roundint)
-                            if copymode:
-                                copy(f'${p}')
-                            print(f"The present value is ${p}\n")
-                    elif solve_variable == "time" or solve_variable == "t" or solve_variable == "n":
-                        r = input("Rate ")
-                        if r == 'exit':
-                            print()
-                            break
-                        FV = ezinput("Interest ")
-                        if FV == 'exit':
-                            print()
-                            break
-                        PV = ezinput("Principal ")
-                        if PV == 'exit':
-                            print()
-                            break
-                        if (numbercheck(r) and numbercheck(FV) and numbercheck(PV)):
-                            r = float(r)
-                            FV = float(FV)
-                            PV = float(PV)
-                            n = round(FV/(r/100*PV),roundint)
-                            if copymode:
-                                copy(n)
-                            print(f"The time period is {n} units of time")
-                    elif solve_variable == "rate" or solve_variable == "r":
-                        n = input("Time period ")
-                        if n == 'exit':
-                            print()
-                            break
-                        FV = ezinput("Interest ")
-                        if FV == 'exit':
-                            print()
-                            break
-                        PV = ezinput("Principal ")
-                        if PV == 'exit':
-                            print()
-                            break
-                        if (numbercheck(n) and numbercheck(FV) and numbercheck(PV)):
-                            n = float(n)
-                            FV = float(FV)
-                            PV = float(PV)
-                            r = str(f'{round((FV/(n*PV))*100,roundint)}%')
-                            if copymode:
-                                copy(r)
-                            print(f"The interest rate is {r}")
-            elif method == 'compound':
+                    try:                        
+                        match inputs():
+                            case [0,R,N]: #If nothing put for P
+                                print(f"> Principal: ${simple_reverseop(R,N)}")
+                            case [P,0,N]: #If nothing put for R
+                                print(f"> Rate: {intinator(simple_reverseop(P,N)*100)}%")
+                            case [P,R,0]: #If nothing put for N
+                                print(f"> Time: {simple_reverseop(R,P)}")
+                            case [P,R,N]: #If all numbers have a value
+                                I = intinator(P*R*N,roundint)
+                                copying(I)
+                                print(f"> Interest: ${I}")
+                                print(f"> Total: ${I+P}",'\n')
+                    except TypeError:
+                        break
+                    except ValueError:
+                        print("Invalid input, please try again")
+                        continue
+
+            case 'compound': #Compound Interest Calculator
                 while True:
-                    solve_variable = ezinput("Solve for Principal, rate or time period ")
-                    if solve_variable == 'rate' or solve_variable == 'r':
-                        FV = input("Future Value ")
-                        if FV == 'exit':
-                            print()
-                            break
-                        PV = input("Principal ")
-                        if PV == 'exit':
-                            print()
-                            break
-                        n = input("Time period ")
-                        if n == 'exit':
-                            print()
-                            break
-                        if (numbercheck(FV) and numbercheck(PV) and numbercheck(n)):
-                            FV = float(FV)
-                            PV = float(PV)
-                            n = float(n)
-                            r = round(100*(((FV/PV)**(1/n))-1),roundint)
-                            if copymode:
-                                copy(f'{intinator(r)}%')
-                            print(f"The rate is {intinator(r)}%\n")
-                    elif solve_variable == 'principal' or solve_variable == 'p':
-                        FV = input("Future Value ")
-                        if FV == 'exit':
-                            print()
-                            break
-                        r = input("Rate ")
-                        if r == 'exit':
-                            print()
-                            break
-                        n = input("Time period ")
-                        if n == 'exit':
-                            print()
-                            break
-                        if (numbercheck(FV) and numbercheck(r) and numbercheck(n)):
-                            FV = float(FV)
-                            r = float(r)
-                            n = float(n)
-                            p = round(FV/(1+(r/100))**n,roundint)
-                            if copymode:
-                                copy(f'${p}')
-                            print(f"The rate is ${p}\n")
-                    elif solve_variable == 'time' or solve_variable == 'n' or solve_variable == 't':
-                        FV = input("Future Value ")
-                        if FV == 'exit':
-                            print()
-                            break
-                        PV = input("Principal ")
-                        if FV == 'exit':
-                            print()
-                            break
-                        r = input("Rate ")
-                        if r == 'exit':
-                            print()
-                            break
-                        if (numbercheck(FV) and numbercheck(r) and numbercheck(PV)):
-                            FV = float(FV)
-                            r = float(r)
-                            PV = float(PV)
-                            n = round(log(FV/PV)/log(1+(r/100)),roundint)
-                            if copymode:
-                                copy(n)
-                            print(f"The time period is {n} units of time\n")
-                    elif solve_variable == 'exit':
-                        print()
+                    try:
+                        match inputs(): #Filter calculation
+
+                            case [0,R,N]:
+                                I = intinput("Total ")
+                                P = I/(1+R)**N
+                                copying(P)
+                                print(f"> Principal: ${P}") #Calculate for Principal
+
+                            case [P,0,N]:
+                                I = intinput("Total ")
+                                R = intinator(100*((I/P)**(1/N)-1),roundint) #Calculate for Rate
+                                copying(R)
+                                print(f"> Rate: {R}%")
+
+                            case [P,R,0]:
+                                if P < 0 or R < 0:
+                                    print("No negative numbers") #You try performing logarithmics on a negative number
+                                    continue
+                                I = intinput("Total ")
+                                N = intinator(log(I/P,R+1),roundint) #Calculate for Time. Use log() to find x if (R+1)^x = I/P
+                                copying(N)
+                                print(f"> Time: {N}")
+
+                            case [P,R,N]:
+                                I = intinator(P*(1+R)**N,roundint)
+                                copying(I-P)
+                                print(f"> Interest: ${I-P}")
+                                print(f"> Total: ${I}\n")
+
+                    except ValueError:
+                        print("Invalid input, please try again")
+                        continue
+                    except TypeError:
                         break
-        case 'settings':
-            x = "Accepted"
-            while True:
-                roundintinput = input("Round to which number ")
-                if intcheck(roundintinput):
-                    roundintinput = int(roundintinput)
-                    if roundint > 0:
-                        roundint = roundintinput
-                        print(x,"\n")
-                        break
-                    else:
-                        print("Only positive whole numbers are accepted\n")
-                elif roundintinput == '':
-                    break
-                else:
-                    roundintinput = ''
-                    print("You did not enter a valid number, please enter a whole positive number\n")
-            while True:
-                copymodeinput = ezinput("Would you like the answers to be copied to your clipboard ")
-                if copymodeinput == 'yes':
-                    copymode = True
-                    print(x)
-                    break
-                elif copymodeinput == 'no':
-                    copymode = False
-                    print(x)
-                    break
-                elif copymodeinput == '':
-                    break
-                else:
-                    print("You did not enter a valid response, yes or no\n")
-            while True:
-                compoundmodeinput = ezinput(input("For compound interest, include first principal, yes or no?"))
-                if compoundmodeinput == 'no':
-                    compoundmode = True
-                    print(x)
-                    break
-                elif compoundmodeinput == 'yes':
-                    compoundmode = False
-                    print(x)
-                    break
-                elif compoundmodeinput == '':
-                    break
-                else:
-                    compoundmodeinput == ''
-                    print("You did nor enter a valid response, please try again")
-            while True:
-                simplemodeinput = ezinput("For simple interest, include first principal, yes or no?")
-                if simplemodeinput == 'yes':
-                    simplemode = True
-                    print(x)
-                    break
-                elif simplemodeinput == 'no':
-                    simplemode = False
-                    print(x)
-                    break
-                elif simplemodeinput == '':
-                    break
-                else:
-                    simplemodeinput = ''
-                    print("You did nor enter a valid response, please try again")
+
+            case 'settings': #Settings to change rounding number and whether to copy answer to clipboard
+                R = ''
+                while True:
+
+                    roundint = 2
+                    match ezinput("Round to how many decimal places "):
+                        case "continue"|'':
+                            break
+                        case "exit":
+                            print("Exiting...\n")
+                            R = 'exit'
+                            break
+                        case roundint: #Reassign roundint to this number
+                            if not intcheck(roundint):
+                                roundint = 2
+                                print("Invalid\n")
+                                continue
+                            roundint = int(roundint)
+                            break
+
+                if not R == "exit": #If roundint didn't call exit move on
+                    while True:
+                        match ezinput("Copy answers to clipboard "):
+                            case "exit"|"continue"|'':
+                                print("Exiting...\n")
+                                break
+                            case "y"|"yes"|"true":
+                                copymode = True
+                                break
+                            case "n"|"no"|"false":
+                                copymode = False
+                                break
+                            case _:              
+                                print("Invalid input\n")
