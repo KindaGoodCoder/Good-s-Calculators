@@ -7,8 +7,10 @@ namespace HelloWorld
         static void Main(string[] args)
         {
             Console.WriteLine("Constant");
-            string constant = Console.ReadLine();
-            Console.WriteLine(constant);
+            double constant = Convert.ToDouble((Console.ReadLine()));
+            Console.WriteLine("Variable Base");
+            double var = Convert.ToDouble((Console.ReadLine()));
+            Console.WriteLine(Math.Log(constant,var));
         }
     }
 }
