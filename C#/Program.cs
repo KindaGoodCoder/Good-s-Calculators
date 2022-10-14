@@ -1,20 +1,33 @@
 ﻿class Program
     {
-    static double inputnum()
+    static double inputnum(string txt)
     {
-        Console.WriteLine("Constant");
-        return 5.9;
+        Console.WriteLine(txt);
+        txt = Console.ReadLine();
+        if (txt == "exit")
+        {
+            Console.WriteLine("Exiting...");
+            throw new InvalidOperationException("pain");
+        }
+
+        return Convert.ToDouble(txt);
     }
     static void Main()
     {
         while (true)
         {
-            inputnum();
-            double constant = Convert.ToDouble((Console.ReadLine()));
-            Console.WriteLine("Variable Base");
-            double var = Convert.ToDouble((Console.ReadLine()));
-            Console.WriteLine("> Variable Power: "+Math.Log(constant,var));
-            Console.WriteLine();
+            try {
+                double constant = inputnum("Constant");
+                double var = inputnum("Variable Base");
+                Console.WriteLine("> Variable Power: "+Math.Log(constant,var)+"\n");
+            }
+            catch (FormatException) {
+                Console.WriteLine("HEIL HYDRA\n");
+                continue;
+            }
+            catch (InvalidOperationException) {
+                break;
+            }
         }
     }
 }
