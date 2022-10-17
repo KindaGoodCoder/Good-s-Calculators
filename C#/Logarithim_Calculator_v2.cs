@@ -1,4 +1,4 @@
-﻿class Program
+﻿class LogCal
     {
     static double inputnum(string txt)
     {
@@ -7,7 +7,7 @@
         if (txt == "exit")
         {
             Console.WriteLine("Exiting...");
-            throw new InvalidOperationException("pain");
+            throw new InvalidOperationException();
         }
 
         return Convert.ToDouble(txt);
@@ -19,10 +19,14 @@
             try {
                 double constant = inputnum("Constant");
                 double var = inputnum("Variable Base");
-                Console.WriteLine("> Variable Power: "+Math.Log(constant,var)+"\n");
+                if (var < 2)
+                {
+                    throw new FormatException();
+                }
+                Console.WriteLine("> Variable Power: "+Math.Round(Math.Log(constant,var),2)+"\n");
             }
             catch (FormatException) {
-                Console.WriteLine("HEIL HYDRA\n");
+                Console.WriteLine("Invalid number, please enter valid positive number\n");
                 continue;
             }
             catch (InvalidOperationException) {
