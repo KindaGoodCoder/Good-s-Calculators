@@ -19,7 +19,7 @@ def inputinator(inputting):
 
 while True:
     try:
-        c1 =  inputinator("\nEnter first coordinate. E.g. 3,5 ")        
+        c1 =  inputinator("\nEnter first coordinate. E.g. 3,5 ")
         c2 =  inputinator("Enter second coordinate or enter gradient (as a lone number) to solve line equation ")
     except:
         continue
