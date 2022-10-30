@@ -36,3 +36,16 @@ if __name__ == "__main__":
                 y *= -1
             gradient = Fraction(intinator(y),intinator(x))
         print("The gradient of the line between the points is",gradient)
+        yintercept = intinator(c1.y-(gradient*c1.x))
+        symbol = '+'
+        if gradient == 1:
+            gradient = ""
+        elif gradient == -1:
+            gradient = "-"
+
+        if yintercept < 0:
+            symbol = '-'
+            yintercept *= -1
+        elif yintercept == 0:
+            yintercept = symbol = ''
+        print(f"The gradient equation of the line is y = {gradient}x {symbol} {yintercept}")
