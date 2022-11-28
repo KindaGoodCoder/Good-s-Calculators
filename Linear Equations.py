@@ -12,30 +12,43 @@ def coinput(txt):
     return txt
 
 if __name__ == "__main__":
+
     while True:
+        
+        #Create Coordinates 
         try:
             c1 = coord(coinput("\nEnter first coordinate. E.g. 3,5 "))
             c2 = coord(coinput("Enter second coordinate "))
         except:
             print("Invalid Input")
             continue
+
+        #Midpoint
         mid = lambda a, b: intinator((a+b)/2)
         print(f"\nMidpoint of the line between the points is ({mid(c1.x,c2.x)},{mid(c1.y,c2.y)})")
-        x = c2.x - c1.x
-        y = c2.y - c1.y
+
+        #Length
+        x = intinator(c2.x - c1.x)
+        y = intinator(c2.y - c1.y)
         length = intinator(x**2+y**2)
         length = int(length**(1/2)) if intcheck(length**(1/2)) else f"√{length}"
-        print(f"pain {length}")
+        print(f"The length of the line is {length} units")
+
+        #Find gradient
+        debounce = True
         if y == 0:
             gradient = "Undefined"
         elif x == 0:
             gradient = 0
         else:
-            if x < 0:
-                x *= -1
-                y *= -1
             gradient = Fraction(intinator(y),intinator(x))
+            debounce = False
         print("The gradient of the line between the points is",gradient)
+        if debounce:
+            print()
+            continue
+
+        #Gradient Equation
         yintercept = intinator(c1.y-(gradient*c1.x))
         symbol = '+'
         if gradient == 1:
@@ -49,3 +62,11 @@ if __name__ == "__main__":
         elif yintercept == 0:
             yintercept = symbol = ''
         print(f"The gradient equation of the line is y = {gradient}x {symbol} {yintercept}")
+
+        #General Equation
+        
+        y = 1
+        # if not intcheck(gradient):
+        #     gradient, y, yintercept = map(lambda x: intinator(x*gradient.denominator), [gradient, y, yintercept])
+        
+        print(f"The general equation of the line is {gradient}x - {y}y {symbol} {yintercept} = 0")
