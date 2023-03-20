@@ -11,10 +11,24 @@ b = 2
 c = 1""")
     while True:
         try:
-            a,b,c = (intinator(ezinput(f"What is the {x} coefficient?")) for x in ["a","b","c"])
-        except:
-            print("Error")
+            a,b,c = (intinator(ezinput(f"\nWhat is the {x} coefficient?\n> ")) for x in ["a","b","c"])
+        except ValueError:
+            print("Invalid input, try again")
             continue
+    
+        try:
+            plus,minus = (intinator((b*-1 + x * math.sqrt(b**2-4*a*c))/2*a) for x in [1,-1])
+        except ValueError:
+            print("Equation cannot be factorised")
+            continue
+
+        connect = "or"
+        symbol = ""
         
-        plus,minus = ((b*-1 + x * math.sqrt(b^2-4*a*c))/2*a for x in [1,-1])
-        print(plus)
+        if plus == minus * -1 or plus == minus:
+            if plus == minus * -1:
+                symbol = "+-"
+            connect = ""
+            minus = ""
+        
+        print(f"\nx = {symbol}{plus} {connect} {minus}")
