@@ -1,5 +1,5 @@
 #Quadratic Calculator
-from General_Maths_Functions import intinator, ezinput
+from General_Maths_Functions import intinator
 import math
 
 if __name__ == "__main__":
@@ -11,7 +11,7 @@ b = 2
 c = 1""")
     while True:
         try:
-            a,b,c = (intinator(ezinput(f"\nWhat is the {x} coefficient?\n> ")) for x in ["a","b","c"])
+            a,b,c = (intinator(input(f"\nWhat is the {x} coefficient?\n> ").strip()) for x in ["a","b","c"])
         except ValueError:
             print("Invalid input, try again")
             continue
@@ -25,10 +25,10 @@ c = 1""")
         connect = "or"
         symbol = ""
         
-        if plus == minus * -1 or plus == minus:
-            if plus == minus * -1:
-                symbol = "+-"
+        if plus == minus * -1 or plus == minus:            
             connect = ""
             minus = ""
+            if plus == minus * -1:
+                symbol = "+-"
         
         print(f"\nx = {symbol}{plus} {connect} {minus}")
