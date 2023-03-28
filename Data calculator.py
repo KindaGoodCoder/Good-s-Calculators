@@ -12,7 +12,7 @@ while True: #FOREVER!
     data_length = len(data) 
     data_sum = sum(data)
 
-    print("Number of data provided: ", data_length)
+    print("\nNumber of data provided: ", data_length)
     print("Sum of all data provided: ", data_sum)
 
     print(f"The Mean is: {intinator(round((data_sum/data_length),2))}")
