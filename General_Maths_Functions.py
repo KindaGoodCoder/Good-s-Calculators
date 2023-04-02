@@ -1,3 +1,4 @@
+import math
 def numbercheck(number):
     try:
         float(number)
