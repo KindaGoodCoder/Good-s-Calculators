@@ -36,12 +36,12 @@ if __name__ == "__main__":
 
         #Find gradient
         debounce = True
-        if y == 0:
+        if x == 0:
             gradient = "Undefined"
-        elif x == 0:
+        elif y == 0:
             gradient = 0
         else:
-            gradient = Fraction(intinator(y),intinator(x))
+            gradient = m = Fraction(intinator(y),intinator(x))
             debounce = False
         print("The gradient of the line between the points is",gradient)
         if debounce:
@@ -66,7 +66,9 @@ if __name__ == "__main__":
         #General Equation
         
         y = 1
-        # if not intcheck(gradient):
-        #     gradient, y, yintercept = map(lambda x: intinator(x*gradient.denominator), [gradient, y, yintercept])
+        while not intcheck(m):
+            m, y, yintercept = map(lambda x: intinator(x*m.denominator), [m, y, yintercept])
+            
+        y = "" if y == 1 else y
         
         print(f"The general equation of the line is {gradient}x - {y}y {symbol} {yintercept} = 0")
