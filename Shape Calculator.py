@@ -82,13 +82,13 @@ while True:
             continue
         printer(("The area of the shape is",round(((3*sqrt(3))/2*o[0]),2)))
     elif mode == 'square pyramid':
-        area = input("Area of base ")
-        height = input("Height of pyramid")
-        o = calculator(area,height)
-        if not o:
-            print(failmsg)
-            continue
-        printer(("The volume of the pyramid is",round((area*height)/3,2)))
+        area = float(input("Area of base "))
+        height = float(input("Height of pyramid"))
+        # o = calculator(area,height)
+        # if not o:
+        #     print(failmsg)
+        #     continue
+        print("The volume of the pyramid is",round((area*height)/3,2))
     else:
         print("You did not enter a valid shape to calculate the area of, please try again")
     print()
