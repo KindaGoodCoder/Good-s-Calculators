@@ -10,9 +10,6 @@ def inputinator(inputting):
             pass
     try:
         data = tuple(map(float,data.strip().split(',')))
-        data[1] #Call upon second value. Raises error if none
-        if len(data) > 2:
-            raise #If more than 2 values, raise error
     except:
         print("Invalid sequence, please enter a readable number sequence. For example: 1,2")
     return data
@@ -28,9 +25,12 @@ while True:
         x2 = c2[0]
         y1 = c1[1]
         y2 = c2[1]
+        if c1[2]:
+            z1 = c1[2]
+            z2 = c2[2]
         del c2, c1
-        print(f"\nMidpoint of the line between the points is ({intinator((x1+x2)/2)},{intinator((y1+y2)/2)})")
-        length = intinator((x2-x1)**2+(y2-y1)**2)
+        print(f"\nMidpoint of the line between the points is ({intinator((x1+x2)/2)},{intinator((y1+y2)/2)},{intinator((z1+z2)/2)})")
+        length = intinator((x2-x1)**2+(y2-y1)**2+(z2-z1)**2)
         if intcheck(sqrt(length)):
             length = int(sqrt(length))
         else:
