@@ -35,6 +35,7 @@ if __name__ == "__main__":
                             print("Side is",sqrt(sarea/6))
                         else: print("Side is",side**(1/3))
                         
+                        
                 case "square pyramid":                    
                     side = verify("side of base")
                     height = verify("pendicular height")
@@ -44,6 +45,16 @@ if __name__ == "__main__":
                     if not sheight:
                         sheight = sqrt((side/2)**2+height**2)
                     print("Surface area is",side**2+4*(0.5*side*sheight))
+
+                case "rectangular pyramid":                    
+                    side = verify("Area of base")
+                    height = verify("pendicular height")
+                    sheight = verify("Slant height")
+
+                    print("Volume is",(side*height)/3)
+                    # if not sheight:
+                    #     sheight = sqrt((side/2)**2+height**2)
+                    # print("Surface area is",side**2+4*(0.5*side*sheight))
 
                 case "trigular pyramid":
                     base = verify("Size of base")
