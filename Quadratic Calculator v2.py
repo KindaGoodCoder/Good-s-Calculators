@@ -1,5 +1,5 @@
 #Quadratic Calculator
-from General_Maths_Functions import intinator
+from General_Maths_Functions import intinator, intcheck
 import math
 
 if __name__ == "__main__":
@@ -15,21 +15,29 @@ c = 1""")
         except ValueError:
             print("Invalid input, try again")
             continue
-    
-        try:
-            plus,minus = (intinator((b*-1 + x * math.sqrt(b**2-4*a*c))/2*a) for x in [1,-1])
-        except ValueError:
+
+        surd = b**2-4*a*c
+        if surd < 0:
             print("Equation cannot be factorised")
             continue
-        
-        connect = "or"
+
         symbol = ""
-        
-        if plus == abs(minus):
-            connect = ""
-            if plus == minus * -1:
-                symbol = "+-"
-            else:
+        connect = "or"
+
+        if intcheck(math.sqrt(surd)):
+            plus,minus = (intinator((b*-1 + x * math.sqrt(surd))/2*a) for x in [1,-1])
+            if abs(plus) == abs(minus):
+                connect = ""                
+                if plus != minus:
+                    symbol = "+-"
                 minus = ""
+                    
+
+        else:
+            if b < 0:
+                symbol = ""
+                b *= -1
+            plus = f" (-{b} + √{surd})/{2*a}"
+            minus = f" (-{b} - √{surd})/{2*a}"
         
         print(f"\nx = {symbol}{plus} {connect} {minus}")
