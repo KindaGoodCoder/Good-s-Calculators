@@ -21,6 +21,7 @@ c = 1""")
             print("Equation cannot be factorised")
             continue
 
+        
         symbol = ""
         connect = "or"
 
